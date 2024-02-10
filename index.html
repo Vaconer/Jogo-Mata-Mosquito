@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title></title>
+		<meta charset="UTF-8" />
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+		<link rel="stylesheet" href="estilo.css" />
+
+		<script>
+			function iniciarJogo() {
+				var nivel = document.getElementById('nivel').value
+
+				if(nivel === '') {
+					alert('Selecione um nível para iniciar o jogo')
+					return false
+				}
+
+				window.location.href = "app.html?" + nivel
+			}
+		</script>
+
+	</head>
+	<body>
+
+		<audio id="background-music" src="musica/Fundo.mp3">
+			Seu navegador não suporta a tag de áudio.
+		</audio>
+		
+		<button id="audio-control" onclick="toggleAudio()">
+			<img id="audio-icon" class="pause" src="imagens/play_icon.png" alt="Play">
+		</button>        
+		
+		<script>
+			var audio = document.getElementById("background-music");
+			var audioIcon = document.getElementById("audio-icon");
+		
+			function toggleAudio() {
+				if (audio.paused) {
+					audio.play();
+					audioIcon.src = "imagens/pause_icon.png"; // Altera a imagem para o ícone de pausa
+				} else {
+					audio.pause();
+					audioIcon.src = "imagens/play_icon.png"; // Altera a imagem para o ícone de play
+				}
+			}
+		
+			// Adiciona um ouvinte de evento para a tecla de espaço
+			document.addEventListener("keydown", function(event) {
+				if (event.code === "Space") {
+					toggleAudio(); // Chama a função para alternar o áudio
+				}
+			});
+		</script>				
+		
+
+		<div class="container">
+			<div class="row">
+				<div class="col">
+					<div class="d-flex justify-content-center">
+						<img src="imagens/game.png" />
+					</div>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col">
+					<div class="d-flex justify-content-center">
+						<div class="mb-2">
+							<select class="form-control" id="nivel">
+								<option value="">-- Selecione o nível --</option>
+								<option value="normal">Normal</option>
+								<option value="dificil">Difícil</option>
+								<option value="chucknorris">Chuck Norris</option>
+							</select>
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+			<div class="row">
+				<div class="col">
+					<div class="d-flex justify-content-center">
+						<button type="button" class="btn btn-danger btn-lg" onclick="iniciarJogo()" >Iniciar Jogo</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</body>
+</html>

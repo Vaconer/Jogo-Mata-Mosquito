@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title></title>
+		<meta charset="UTF-8" />
+		<link rel="stylesheet" href="estilo.css" />
+		<script src="jogo.js"></script>
+	</head>
+	<body onresize="ajustaTamanhoPalcoJogo()">
+
+		<audio id="background-music" src="musica/Fundo.mp3">
+			Seu navegador não suporta a tag de áudio.
+		</audio>
+		
+		<button id="audio-control" onclick="toggleAudio()">
+			<img id="audio-icon" class="pause" src="imagens/play_icon.png" alt="Play">
+		</button>        
+		
+		<script>
+			var audio = document.getElementById("background-music");
+			var audioIcon = document.getElementById("audio-icon");
+		
+			function toggleAudio() {
+				if (audio.paused) {
+					audio.play();
+					audioIcon.src = "imagens/pause_icon.png"; // Altera a imagem para o ícone de pausa
+				} else {
+					audio.pause();
+					audioIcon.src = "imagens/play_icon.png"; // Altera a imagem para o ícone de play
+				}
+			}
+		
+			// Adiciona um ouvinte de evento para a tecla de espaço
+			document.addEventListener("keydown", function(event) {
+				if (event.code === "Space") {
+					toggleAudio(); // Chama a função para alternar o áudio
+				}
+			});
+		</script>
+		
+
+		<div class="painel">
+			<div class="vidas">
+				<img id="v1" src="imagens/coracao_cheio.png" />
+				<img id="v2" src="imagens/coracao_cheio.png" />
+				<img id="v3" src="imagens/coracao_cheio.png" />
+			</div>
+
+			<div class="cronometro">Tempo restante: <span id="cronometro"></span></div>
+		</div>
+
+		<script>
+			document.getElementById('cronometro').innerHTML = tempo
+
+			var criaMosca = setInterval(function() { 
+				posicaoRandomica()
+			}, criaMosquitoTempo)
+		</script>
+	</body>
+</html>
